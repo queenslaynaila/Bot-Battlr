@@ -1,14 +1,20 @@
-import React from "react";
-
-function YourBotArmy() {
-  //your bot army code here...
+import React,{useState} from "react";
+import BotCard from "./BotCard";
+function YourBotArmy({bots}) {
+    
+  function onSelectBot(bot){
+    console.log(bot)
+  }
+ 
 
   return (
     <div className="ui segment inverted olive bot-army">
       <div className="ui five column grid">
         <div className="row bot-army-row">
-          {/*...and here...*/}
-          Your Bot Army
+          {bots.map((bot)=>{
+            return <BotCard   key={bot.id} onSelectBot= {onSelectBot}  bot={bot}></BotCard>
+          })}
+         
         </div>
       </div>
     </div>
