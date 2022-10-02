@@ -2,11 +2,11 @@ import React from "react";
 import BotCard from "./BotCard";
 
 
-function BotCollection({bots,deleteBot}) {
+function BotCollection({bots,deleteBot,addToMyBotArmy}) {
 
   const botsList = bots.map((bot)=>{
     return (
-      <BotCard deleteBot={deleteBot} key={bot.id} bot={bot}></BotCard>
+      <BotCard addToMyBotArmy={addToMyBotArmy} deleteBot={deleteBot} key={bot.id} bot={bot}></BotCard>
     )
   })
   return (

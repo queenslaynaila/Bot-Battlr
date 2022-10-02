@@ -9,18 +9,23 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot,deleteBot}) {
-   
+function BotCard({ bot,deleteBot,addToMyBotArmy}) {
+   console.log(addToMyBotArmy)
   function  handleClick(selectedbot){
-    console.log("i am hanndling click")
+    
+    addToMyBotArmy(selectedbot)
      
   }
   function handleDelete(bot){
     deleteBot(bot)
   }
+  function showBoltSpecs(bot){
+    console.log(bot)
+  }
   return (
     <div className="ui column">
       <div
+      onDoubleClick={()=>showBoltSpecs(bot)}
         className="ui card"
         key={bot.id}
         onClick={() => handleClick(bot)}

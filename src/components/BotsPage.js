@@ -27,11 +27,16 @@ function BotsPage() {
       .then(()=>setBots(filterbots))
     
   }
-   
+  function addToMyBotArmy(bot){
+    setSelectedBots((prevbot)=>{
+      return [...prevbot,bot]
+    })
+  }
+   console.log(addToMyBotArmy)
   return (
     <div>
-      <YourBotArmy bots={selectedBots}/>
-      <BotCollection deleteBot={deletebot} bots={bots} />
+      <YourBotArmy    bots={selectedBots}/>
+      <BotCollection addToMyBotArmy={addToMyBotArmy} deleteBot={deletebot} bots={bots} />
     </div>
   )
 }
