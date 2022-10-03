@@ -1,20 +1,34 @@
-import React,{useState,useEffect} from "react";
+import React, { useState , useEffect } from "react";
 import YourBotArmy from "./YourBotArmy";
 import BotCollection from "./BotCollection";
 
-function BotsPage() {
-  const [bots,setBots] = useState([])
-  const [myBot,setMyBot] = useState([])
  
-  useEffect(()=>{
-    fetch("http://localhost:8002/bots")
-    .then(response=>response.json())
-    .then(data=>setBots(data))
-  })
 
-  function handleDelete (bot){
-    const removeFromArmy = myBot.filter((mybot)=>mybot.id !== bot.id)
-    setMyBot(removeFromArmy)
+function BotsPage() {
+  
+
+  const [bots, setBots] = useState([]);
+  const [myBot,setMyBot] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:8002/bots")
+    .then(res => res.json())
+    .then(setBots)
+  },[])
+
+  function enlistBot(bot){
+    const selectedBot = myBot.find((boty)=>boty.id === bot.id)  
+    if (!selectedBot){
+     setMyBot(bots=>[...bots,bot])
+    }   
+  }
+
+  function removeBot(bot){
+    const filterRemove = myBot.filter((b)=>b.id !== bot.id)
+    setMyBot(filterRemove)
+  }
+
+  function deleteBot(bot){  
     const filterbots = bots.filter((singlebot) => singlebot.id !==  bot.id);
     const   deleteConfig =  {
           method: "DELETE",
@@ -23,23 +37,22 @@ function BotsPage() {
           } 
     }
     fetch(`http://localhost:8002/bots/${bot.id}`,deleteConfig)
-      .then(()=>setBots(filterbots))
+      .then(()=>setBots(filterbots))   
   }
-  function enlistBots(bot){
-     const selectedBot = myBot.find((boty)=>boty.id === bot.id)  
-     if (!selectedBot){
-      setMyBot(bots=>[...bots,bot])
-     }   
-  }
-  function removeBort(bot){
-    const filterRemove = myBot.filter((b)=>b.id !== bot.id)
-    setMyBot(filterRemove)
-  }
- 
+
   return (
     <div>
-      <YourBotArmy bots={myBot}   />
-      <BotCollection enlistBots={enlistBots} onDeleteBot={handleDelete}  bots={bots} />
+      <YourBotArmy 
+      bots={myBot}
+      removeBot ={removeBot}
+      deleteBot={deleteBot}
+      />
+
+      <BotCollection 
+      bots={bots}
+      enlistBot={enlistBot}
+      deleteBot={deleteBot}
+      />
     </div>
   )
 }
