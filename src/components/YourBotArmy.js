@@ -1,6 +1,6 @@
 import React from "react";
 import BotCard from "./BotCard";
-function YourBotArmy({bots,removeBort}) {
+function YourBotArmy({bots }) {
    
    
   return (
@@ -8,7 +8,7 @@ function YourBotArmy({bots,removeBort}) {
       <div className="ui five column grid">
         <div className="row bot-army-row">
            {bots.map((bot)=>{
-            return <BotCard key={bot.id}  removeBort={removeBort} bot={bot}></BotCard>
+            return <BotCard key={bot.id}  bot={bot}></BotCard>
            })}
            
         </div>

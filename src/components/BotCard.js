@@ -9,8 +9,8 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot,deleteBot,enlistBots,removeBort }) {
-   
+function BotCard({ bot,deleteBot,enlistBots   }) {
+  
   function dischargeBot(bot){
      deleteBot(bot)
   }

@@ -29,7 +29,7 @@ function BotsPage() {
      const selectedBot = myBot.find((boty)=>boty.id === bot.id)  
      if (!selectedBot){
       setMyBot(bots=>[...bots,bot])
-     }      
+     }   
   }
   function removeBort(bot){
     const filterRemove = myBot.filter((b)=>b.id !== bot.id)
@@ -38,8 +38,8 @@ function BotsPage() {
  
   return (
     <div>
-      <YourBotArmy bots={myBot} removeBort={removeBort} />
-      <BotCollection enlistBots={enlistBots} onDeleteBot={handleDelete} bots={bots} />
+      <YourBotArmy bots={myBot}   />
+      <BotCollection enlistBots={enlistBots} onDeleteBot={handleDelete}  bots={bots} />
     </div>
   )
 }
