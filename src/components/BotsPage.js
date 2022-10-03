@@ -36,6 +36,8 @@ function BotsPage() {
             "Content-Type": "application/json",
           } 
     }
+    const deleteFromArmy = myBot.filter((armybot)=>armybot.id !== bot.id)
+    setMyBot(deleteFromArmy)
     fetch(`http://localhost:8002/bots/${bot.id}`,deleteConfig)
       .then(()=>setBots(filterbots))   
   }
